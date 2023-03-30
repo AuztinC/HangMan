@@ -2,8 +2,10 @@
 // document.addEventListener("DOMContentLoaded", () =>  { // ON LOAD
 
 
-let bodyParts = [`url("/img/4.jpg")`,`url("/img/5.jpg")`,`url("/img/6.jpg")`,`url("/img/7.jpg")`,`url("/img/8.jpg")`,`url("/img/9.jpg")`,`url("/img/10.jpg")`];
+let bodyParts = [`url("/img/1.jpg")`,`url("/img/2.jpg")`,`url("/img/3.jpg")`,`url("/img/4.jpg")`,`url("/img/5.jpg")`,`url("/img/6.jpg")`,`url("/img/7.jpg")`,`url("/img/8.jpg")`,`url("/img/9.jpg")`,`url("/img/10.jpg")`];
+let f = 0;
 let ranWord = "";
+let gameBoard = document.getElementById('gameBoard');
 // ACCESS RANDOM WORD API
 async function getNewWord(){
     let something = new XMLHttpRequest();
@@ -18,34 +20,43 @@ async function getNewWord(){
 }
 // getNewWord(function(w){console.log(w)})
 
-// console.log(inputBlock)
-
 function setWord(rWord) {
     for (i = 0; i < inputBlock.length; i++) {
-        // console.log(inputBlock[i]);
         inputBlock[i].innerHTML = rWord[i].toUpperCase();
         inputBlock[i].style.visibility='visible'
+        // key[i].className = "activeKey";
     }
 }
 getNewWord() 
-
 // })// END ON LOAD
 
 let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
-// let letterId = Array.from(document.querySelectorAll(`"#key" + letter`));
+// let container = document.getElementById('container');
+// let keyRow = document.getElementsByClassName('keyRow');
+let isKey = false;
 
-// console.log(letterId)
-
-
-function letterCheck(key) {
+function letterCheck(key) { // PRESS ANY KEY
     
+    let starBlock = document.createElement('div');
+    // console.log(key.offsetTop)
+    key.className = "inactiveKey";
+    key.disabled = true;
     
     for (i = 0; i < inputBlock.length; i++) {
-        console.log(ranWord[i])
         if (key.id[3] == ranWord[i].toUpperCase()) {    
-            
             inputBlock[i].innerHTML = ranWord[i].toUpperCase();
-            // ranWord[i].style.visibility='visible';
+            key.className = "correctKey";
+            key.appendChild(starBlock);
+            starBlock.className = "starBlock"; 
+            // starBlock.style.top = key.offsetTop;
+            // starBlock.style.left = key.offetLeft;
+            starBlock.innerHTML += " &bigstar;";
+            isKey = true;
         }
     }
+    if (isKey != true){
+        f++;
+        gameBoard.style.backgroundImage = bodyParts[f]
+    } 
+    isKey = false;
 }

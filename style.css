@@ -20,6 +20,18 @@ body {
     margin: 0px;
 }
 
+#fullScreenBtn {
+    color: white;
+    font-family: fantasy;
+    font-weight: bold;
+    background-color: saddlebrown;
+    box-sizing: border-box;
+    border: 1px;
+    border-color: darkgoldenrod;
+    border-style:ridge;
+    border-radius: 5px;
+}
+
  /* GET TEXTURES FOR BGS */
 #title {
     width: 100%;
@@ -27,7 +39,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px;
+    margin: 9px 0px 0px 0px;
     color: aliceblue;
     font-family: fantasy;
     font-weight: bold;
@@ -134,3 +146,49 @@ body {
     display: flex;
     /* height: 40px; */
 }
+
+
+.inactiveKey {
+    padding: 2px;
+    background-color: grey;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-bottom: 5px solid darkgoldenrod;
+    border-radius: 5px;
+    box-sizing: border-box;
+    flex-grow: 1;  
+    display: flex;
+}
+
+.correctKey {
+    padding: 2px;
+    flex-grow: 1;  
+    display: flex;
+    border-bottom: 5px solid darkgoldenrod;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    /* font-size:500%; */
+    /* color:blue; */
+}
+.starBlock {
+    padding:7px;
+    position: absolute;
+    top: center;
+    left: center;
+    /* flex-grow: 1;  */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:100%;
+    color:black;
+}
+
+@media screen and (max-width: 480px) {
+    .starBlock {
+      font-size: 50%;
+    }
+  }

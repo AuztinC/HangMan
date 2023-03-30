@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Tillana:wght@700&display=swap" rel="stylesheet">
+    <title>HangMan</title>
+    
+</head>
+<body>
+    <!-- TITLE ∆∆∆∆-->
+    <!-- Hangman ting -->
+    <!-- Guessing Word -->
+    <!-- On Screen Keys -->
+    
+    <div id="container" onclick = "this.requestFullscreen();">
+        
+        <h1 id="title">Hang 9, brother</h1>
+        
+        <div id="gameBoard"></div>
+        
+        
+        <!-- LETTER BLOCKS  -->
+        <div id="inputWord"> 
+            <div class="inputBlock"></div>
+            <div class="inputBlock"></div>
+            <div class="inputBlock"></div>
+            <div class="inputBlock"></div>
+            <div class="inputBlock"></div>
+            <div class="inputBlock"></div>
+            <div class="inputBlock"></div>
+            <div class="inputBlock"></div>
+            <div class="inputBlock"></div>
+        </div>
+        <!-- key....board -->
+        <div id="keyBoard">
+            <div class="keyRow">
+                <button onclick="letterCheck(this)" id="keyQ" class="keyBlock">Q</button>
+                <button onclick="letterCheck(this)" id="keyW" class="keyBlock">W</button>
+                <button onclick="letterCheck(this)" id="keyE" class="keyBlock">E</button>
+                <button onclick="letterCheck(this)" id="keyR" class="keyBlock">R</button>
+                <button onclick="letterCheck(this)" id="keyT" class="keyBlock">T</button>
+                <button onclick="letterCheck(this)" id="keyY" class="keyBlock">Y</button>
+                <button onclick="letterCheck(this)" id="keyU" class="keyBlock">U</button>
+                <button onclick="letterCheck(this)" id="keyI" class="keyBlock">I</button>
+                <button onclick="letterCheck(this)" id="keyO" class="keyBlock">O</button> 
+            </div>  
+            <div class="keyRow">
+                <button onclick="letterCheck(this)" id="keyA" class="keyBlock">A</button>
+                <button onclick="letterCheck(this)" id="keyS" class="keyBlock">S</button>
+                <button onclick="letterCheck(this)" id="keyD" class="keyBlock">D</button>
+                <button onclick="letterCheck(this)" id="keyF" class="keyBlock">F</button>
+                <button onclick="letterCheck(this)" id="keyG" class="keyBlock">G</button>
+                <button onclick="letterCheck(this)" id="keyH" class="keyBlock">H</button>
+                <button onclick="letterCheck(this)" id="keyJ" class="keyBlock">J</button>
+                <button onclick="letterCheck(this)" id="keyK" class="keyBlock">K</button>
+                <button onclick="letterCheck(this)" id="keyP" class="keyBlock">P</button> 
+            </div>  
+            <div class="keyRow3">
+                <button onclick="letterCheck(this)" id="keyZ" class="keyBlock">Z</button>
+                <button onclick="letterCheck(this)" id="keyX" class="keyBlock">X</button>
+                <button onclick="letterCheck(this)" id="keyC" class="keyBlock">C</button>
+                <button onclick="letterCheck(this)" id="keyV" class="keyBlock">V</button>
+                <button onclick="letterCheck(this)" id="keyB" class="keyBlock">B</button>
+                <button onclick="letterCheck(this)" id="keyN" class="keyBlock">N</button>
+                <button onclick="letterCheck(this)" id="keyM" class="keyBlock">M</button>
+                <button onclick="letterCheck(this)" id="keyL" class="keyBlock">L</button>
+            </div>  
+        </div>
+        
+    </div>
+</body>
+
+
+
+<script src="main.js"></script>
+
+
+</html>

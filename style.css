@@ -1,20 +1,15 @@
 body {
-    
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0px;
 }
-/* @font-face {
-    font-family: Permanent-Marker;
-    src: url('https://fonts.googleapis.com/css2?family=Permanent+Marker&:wght@700&display=swap');
-} */
 
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Tillana:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 #container { 
     background-image: url(https://us.123rf.com/450wm/yamabikay/yamabikay1705/yamabikay170500039/77519356-green-felt-texture-for-poker-an-casino-theme-seamless-square-background-tile-ready-high-resolution-p.jpg?ver=6);
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     padding: 0px;
     display: flex;
@@ -38,7 +33,7 @@ body {
 
 #resetBtn {
     position: relative;
-    left: -200px;
+    left: -150px;
     top: -100px;
 }
 
@@ -49,10 +44,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 9px 0px 0px 0px;
+    margin: 0px 0px 9px 0px;
     color: aliceblue;
     font-family:Lobster;
-    font-weight: bold;
+    font-size:40px;
     background-color: saddlebrown;
     box-sizing: border-box;
     border: 10px;

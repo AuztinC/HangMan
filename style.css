@@ -5,9 +5,12 @@ body {
     align-items: center;
     margin: 0px;
 }
+@font-face {
+    font-family: Permanent-Marker;
+    src: url('https://fonts.googleapis.com/css2?family=Permanent+Marker:wght@700&display=swap');
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Tillana:wght@700&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Tillana:wght@700&display=swap'); */
 #container { 
     background-image: url(https://us.123rf.com/450wm/yamabikay/yamabikay1705/yamabikay170500039/77519356-green-felt-texture-for-poker-an-casino-theme-seamless-square-background-tile-ready-high-resolution-p.jpg?ver=6);
     width: 100vw;
@@ -20,16 +23,22 @@ body {
     margin: 0px;
 }
 
-#fullScreenBtn {
+#fullScreenBtn, #resetBtn {
     color: white;
     font-family: fantasy;
-    font-weight: bold;
+    /* font-weight: bold; */
     background-color: saddlebrown;
     box-sizing: border-box;
     border: 1px;
     border-color: darkgoldenrod;
     border-style:ridge;
     border-radius: 5px;
+}
+
+#resetBtn {
+    position: relative;
+    left: -200px;
+    top: -100px;
 }
 
  /* GET TEXTURES FOR BGS */
@@ -49,8 +58,8 @@ body {
     border-color: darkgoldenrod;
     border-style:ridge;
     border-radius: 5px;
-    padding-top: 15px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #gameBoard {
@@ -82,7 +91,7 @@ body {
 }
 
 #inputWord div {
-    font-family: Permanent Marker;
+    font-family: Permanent-Marker;
     display: flex;
     justify-content: center;
     align-items: center;

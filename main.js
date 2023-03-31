@@ -19,24 +19,25 @@ async function getNewWord(){
     something.send();
 }
 // getNewWord(function(w){console.log(w)})
+getNewWord() 
 
 function setWord(rWord) {
     for (i = 0; i < inputBlock.length; i++) {
         inputBlock[i].innerHTML = rWord[i].toUpperCase();
         inputBlock[i].style.visibility='visible'
-        // key[i].className = "activeKey";
     }
 }
-getNewWord() 
 // })// END ON LOAD
 
 let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
 // let container = document.getElementById('container');
 // let keyRow = document.getElementsByClassName('keyRow');
+let keyBlock = document.getElementsByClassName('keyBlock');
+ let keyRow = $('.keyRow');
+ 
 let isKey = false;
-
 function letterCheck(key) { // PRESS ANY KEY
-    
+
     let starBlock = document.createElement('div');
     // console.log(key.offsetTop)
     key.className = "inactiveKey";
@@ -48,8 +49,6 @@ function letterCheck(key) { // PRESS ANY KEY
             key.className = "correctKey";
             key.appendChild(starBlock);
             starBlock.className = "starBlock"; 
-            // starBlock.style.top = key.offsetTop;
-            // starBlock.style.left = key.offetLeft;
             starBlock.innerHTML += " &bigstar;";
             isKey = true;
         }
@@ -58,5 +57,25 @@ function letterCheck(key) { // PRESS ANY KEY
         f++;
         gameBoard.style.backgroundImage = bodyParts[f]
     } 
+    if (f == 9) {
+        gameOver();
+    }
+    // console.log(f)
     isKey = false;
 }
+
+function anotherWord(){
+    location.reload();
+}
+
+function gameOver() {
+    setWord(ranWord);
+    // console.log(keyBlock.length)
+    for (j = 0; j < keyBlock.length; j++){
+        // console.log()
+        keyBlock.length.forEach(letterCheck(keyBlock[j].id[3]));
+    }
+}
+
+
+

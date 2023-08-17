@@ -17,11 +17,12 @@
 
     <div id="container">
         <h1 id="title">Hang 9, brother</h1>
-        <button id="fullScreenBtn" onclick="document.getElementById('container').requestFullscreen();">FULLSCREEN</button>
+        <button class="btn fullScreen" onclick="document.getElementById('container').requestFullscreen();">FULLSCREEN</button>
 
         <div id="gameBoard"></div>
 
-        <button id="resetBtn" onclick="anotherWord()">Another<br>Word?</button>
+        <button class="btn reset" onclick="anotherWord()">Another<br>Word?</button>
+        <button class="btn fiveLetters" onclick="setWordLength()">Five<br>Letters</button>
 
         <!-- LETTER BLOCKS  -->
         <div id="inputWord">

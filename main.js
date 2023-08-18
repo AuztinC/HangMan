@@ -23,28 +23,25 @@ async function getNewWord(length){
     something.send();
 }
 
-function startGame(){
-
-
+function startGame(){ //        START THIS MFER UP
                 //  TODOOOOS
-    // reset keyboard
+    // reset keyboard || loop through all keys remove inactive and active classes
     // reset images
     // clear input blocks
     // append input blocks
-
-
+    // console.log(keyBlock.length)
+    Array.from(keyBlock).forEach(keyEl => {
+        resetKeys(keyEl)
+    });
 
     getNewWord(wordLength)
 }
 startGame()
 
-// console.log(uiBtns[2].className)
-function setWordLength(obj, num){
+function setWordLength(obj, num){  // CHANGE GAME ACCORDING TO WORD LENGTH
 
     for(let i = 0; i < uiBtns.length; i++){
-
         let btnClass = uiBtns[i].className
-
         if(btnClass.includes(" selected")){
             uiBtns[i].className = btnClass.replace(" selected", "");
             console.log(uiBtns[i])
@@ -57,14 +54,14 @@ function setWordLength(obj, num){
 
 function letterCheck(key) { // PRESS ANY KEY
 
-    key.className = "inactiveKey";
+    key.className += " inactiveKey";
     key.disabled = true;
 
-    for (i = 0; i < wordLength; i++) {
-        if (key.id[3] == ranWord[i].toUpperCase()) {
+    for (let i = 0; i < wordLength; i++) {
+        if (key.id[3] === ranWord[i].toUpperCase()) {
             let starBlock = document.createElement('div');
             inputBlock[i].innerHTML = ranWord[i].toUpperCase();
-            key.className = "correctKey";
+            key.className = key.className.replace(" inactiveKey", " correctKey");
             key.appendChild(starBlock);
             starBlock.className = "starBlock";
             starBlock.innerHTML += " &bigstar;";
@@ -78,16 +75,28 @@ function letterCheck(key) { // PRESS ANY KEY
     if (f == 9) {
         gameOver();
     }
-    // console.log(f)
     isKey = false;
 }
 
-function anotherWord(){
+function resetKeys(keyEl){
+    let key = keyEl.className
+    if(key.includes(" inactiveKey")){
+        key = key.replace(" inactiveKey", "")
+        key = key.disabled = false;
+        // console.log(key)
+    }
+    if(key.includes(" correctKey")){
+        key = key.replace(" correctKey", "");
+        key = key.disabled = false;
+    }
+}
+
+function anotherWord(){ // RESTART WITH CURRENT WORD LENGTH
     startGame()
 }
 
 function setWord(rWord) { // DISPLAY WINNING WORD
-    for (i = 0; i < inputBlock.length; i++) {
+    for (let i = 0; i < inputBlock.length; i++) {
         inputBlock[i].innerHTML = rWord[i].toUpperCase();
         inputBlock[i].style.visibility='visible'
     }
@@ -95,9 +104,7 @@ function setWord(rWord) { // DISPLAY WINNING WORD
 
 function gameOver() {
     setWord(ranWord);
-    // console.log(keyBlock.length)
-    for (j = 0; j < keyBlock.length; j++){
-        // console.log()
+    for (let j = 0; j < keyBlock.length; j++){
         keyBlock.length.forEach(letterCheck(keyBlock[j].id[3]));
     }
 }

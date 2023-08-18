@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0px;
-    background-image: linear-gradient(to top, rgba(0, 255, 0, 0.5), rgba(0, 100, 0, 0.7)), url(https://us.123rf.com/450wm/yamabikay/yamabikay1705/yamabikay170500039/77519356-green-felt-texture-for-poker-an-casino-theme-seamless-square-background-tile-ready-high-resolution-p.jpg?ver=6);
+    background-image: linear-gradient(to top, rgba(0, 200, 0, 0.3), rgba(0, 100, 0, 0.5)), url(https://us.123rf.com/450wm/yamabikay/yamabikay1705/yamabikay170500039/77519356-green-felt-texture-for-poker-an-casino-theme-seamless-square-background-tile-ready-high-resolution-p.jpg?ver=6);
     /* background:) */
 }
 
@@ -15,8 +15,8 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 #container {
     background-image: url(https://us.123rf.com/450wm/yamabikay/yamabikay1705/yamabikay170500039/77519356-green-felt-texture-for-poker-an-casino-theme-seamless-square-background-tile-ready-high-resolution-p.jpg?ver=6);
-    /* width: 100%; */
-    max-width: 900px;
+    width: 550px;
+    /* max-width: 600px; */
     height: 100%;
     max-height: 800px;
     display: flex;
@@ -45,12 +45,25 @@ body {
 .reset {
     position: absolute;
     left: 1%;
-    bottom: 60%;
+    top: 20%;
+}
+.fourLetters{
+    position: absolute;
+    left: 2%;
+    bottom: 47%;
 }
 .fiveLetters{
     position: absolute;
     left: 2%;
     bottom: 53%;
+}
+.sixLetters{
+    position: absolute;
+    left: 2%;
+    bottom:59%;
+}
+.selected{
+    background-color: rgb(104, 52, 15);
 }
 
  /* GET TEXTURES FOR BGS */
@@ -64,6 +77,7 @@ body {
     color: aliceblue;
     font-family:Lobster;
     font-size:2em;
+    letter-spacing: 2px;
     background-color: saddlebrown;
     box-sizing: border-box;
     border: 10px;
@@ -220,6 +234,10 @@ body {
         padding-top: 15px;
         font-size: 50%;
     }
+    #container{
+        width: 100%;
+        min-height: 100%;
+    }
     #title{
         width: 100%;
         margin: 0px;
@@ -230,9 +248,6 @@ body {
         border-radius: 5px;
         /* padding-top: 0px; */
         /* padding-bottom: 8px; */
-    }
-    #container{
-        max-height: 100%;
     }
     #keyBoard {
         border: solid;

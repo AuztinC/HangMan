@@ -3,13 +3,13 @@ let bodyParts = [`url("/img/1.jpg")`,`url("/img/2.jpg")`,`url("/img/3.jpg")`,`ur
 let f = 0;
 let ranWord = "";
 let wordLength = 4;
-let answerBlock = document.createElement("div")
-let gameBoard = document.getElementById('gameBoard');
-let keyBlock = document.getElementsByClassName('keyBlock');
-let uiBtns = document.getElementsByClassName("btn")
 let keyRow = $('.keyRow');
+const gameBoard = document.getElementById('gameBoard');
+const keyBlock = document.getElementsByClassName('keyBlock');
+const uiBtns = document.getElementsByClassName("btn")
+const inputWord = document.getElementById("inputWord");
 let isKey = false;
-let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
+
 
 
 // ACCESS RANDOM WORD API
@@ -18,45 +18,47 @@ async function getNewWord(length){
     something.open("GET", `https://random-word-api.vercel.app/api?words=1&length=${length}`);
     something.onload = function(){
         ranWord = something.responseText.slice(2, something.response.length - 2);
-        // console.log(ranWord);
     }
     something.send();
 }
 
 function startGame(){ //        START THIS MFER UP
-                //  TODOOOOS
-    // reset keyboard || loop through all keys remove inactive and active classes
-    // reset images
-    // clear input blocks
-    // append input blocks
-    // console.log(keyBlock.length)
-    Array.from(keyBlock).forEach(keyEl => {
+    //  TODOOOOS
+    // CHECK || reset keyboard || loop through all keys remove inactive and active classes
+    Array.from(keyBlock).forEach(keyEl => { // reset keys
         resetKeys(keyEl)
     });
 
+    // CHECK || reset images
+    resetImg()
+
+    // CHECK || clear input blocks
+    resetInputBlock();
+
     getNewWord(wordLength)
 }
+
 startGame()
 
 function setWordLength(obj, num){  // CHANGE GAME ACCORDING TO WORD LENGTH
-
-    for(let i = 0; i < uiBtns.length; i++){
-        let btnClass = uiBtns[i].className
-        if(btnClass.includes(" selected")){
-            uiBtns[i].className = btnClass.replace(" selected", "");
-            console.log(uiBtns[i])
+    if(num != wordLength){
+        for(let i = 0; i < uiBtns.length; i++){
+            let btnClass = uiBtns[i].className
+            if(btnClass.includes(" selected")){
+                uiBtns[i].className = btnClass.replace(" selected", "");
+            }
         }
+        obj.className += " selected"
+        wordLength = num;
+        startGame()
     }
-    obj.className += " selected"
-    wordLength = num;
-    startGame()
 }
 
 function letterCheck(key) { // PRESS ANY KEY
+    let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
 
     key.className += " inactiveKey";
     key.disabled = true;
-
     for (let i = 0; i < wordLength; i++) {
         if (key.id[3] === ranWord[i].toUpperCase()) {
             let starBlock = document.createElement('div');
@@ -79,15 +81,32 @@ function letterCheck(key) { // PRESS ANY KEY
 }
 
 function resetKeys(keyEl){
-    let key = keyEl.className
-    if(key.includes(" inactiveKey")){
-        key = key.replace(" inactiveKey", "")
-        key = key.disabled = false;
-        // console.log(key)
+    const starBlock = document.querySelectorAll('.starBlock');
+    if(keyEl.className.includes(" inactiveKey")){
+        keyEl.className = "keyBlock"
+        keyEl.disabled = false;
     }
-    if(key.includes(" correctKey")){
-        key = key.replace(" correctKey", "");
-        key = key.disabled = false;
+    if(keyEl.className.includes(" correctKey")){
+        keyEl.className = "keyBlock";
+        keyEl.disabled = false;
+    }
+    starBlock.forEach(el => {
+        el.remove()
+    });
+}
+function resetImg(){
+    f = 0;
+    gameBoard.style.backgroundImage = `url("./img/0.jpg")`;
+}
+function resetInputBlock(){
+    let currentInpBlx = document.querySelectorAll(".inputBlock")
+    currentInpBlx.forEach(element => {
+        element.remove();
+    });
+    for(let i = 0; i < wordLength; i++){
+        const answerBlock = document.createElement("div")
+        inputWord.append(answerBlock)
+        answerBlock.className = "inputBlock"
     }
 }
 
@@ -96,6 +115,7 @@ function anotherWord(){ // RESTART WITH CURRENT WORD LENGTH
 }
 
 function setWord(rWord) { // DISPLAY WINNING WORD
+    let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
     for (let i = 0; i < inputBlock.length; i++) {
         inputBlock[i].innerHTML = rWord[i].toUpperCase();
         inputBlock[i].style.visibility='visible'
@@ -105,7 +125,9 @@ function setWord(rWord) { // DISPLAY WINNING WORD
 function gameOver() {
     setWord(ranWord);
     for (let j = 0; j < keyBlock.length; j++){
-        keyBlock.length.forEach(letterCheck(keyBlock[j].id[3]));
+        Array.from(keyBlock).forEach(element => {
+            letterCheck(keyBlock[j])
+        });
     }
 }
 

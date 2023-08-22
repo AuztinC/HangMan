@@ -78,6 +78,7 @@ function letterCheck(key) { // PRESS ANY KEY
         gameOver();
     }
     isKey = false;
+    if(didWeWin()){console.log("winner")}
 }
 
 function resetKeys(keyEl){
@@ -108,6 +109,23 @@ function resetInputBlock(){
         inputWord.append(answerBlock)
         answerBlock.className = "inputBlock"
     }
+}
+
+function didWeWin(){
+    let win = false
+    let toWin = wordLength;
+    let inputBlock = document.querySelectorAll(".inputBlock")
+    inputBlock.forEach(element => {
+        if(element.innerHTML){
+            toWin--
+        }
+    });
+    if(toWin === 0 && gameBoard.style.backgroundImage != `url("/img/10.jpg")`){
+        win = true
+    } else {
+        win = false
+    }
+    return win
 }
 
 function anotherWord(){ // RESTART WITH CURRENT WORD LENGTH

@@ -200,6 +200,13 @@ body {
     display: flex;
 }
 
+@keyframes correct {
+    from {
+    }
+    to {
+        bottom: 10px;
+    }
+}
 .correctKey {
     position: relative;
     padding: 2px;
@@ -211,8 +218,8 @@ body {
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
-    /* font-size:500%; */
-    /* color:blue; */
+    animation-name: correct;
+    animation-duration: .2s;
 }
 .starBlock {
     width: 100%;
@@ -247,7 +254,7 @@ body {
         border: 8px;
         border-color: darkgoldenrod;
         border-style:ridge;
-        border-radius: 5px;
+        border-radius: 0px 0px 5px 5px;
         /* padding-top: 0px; */
         /* padding-bottom: 8px; */
     }

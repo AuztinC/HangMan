@@ -158,8 +158,8 @@ function setWord(rWord) { // DISPLAY WINNING WORD
 // const MyPromise = require('some-promise-lib');
 // const confetti = require('canvas-confetti');
 // confetti.Promise = MyPromise;
-function gameOver(win, lose) {
-    if(lose === true){
+function gameOver(answer) {
+    if(answer === true){
         setWord(ranWord);
             Array.from(keyBlock).forEach(element => {
                 if(!element.className.includes("correctKey")) {
@@ -167,7 +167,7 @@ function gameOver(win, lose) {
                 }
             })
     }
-    if(win === true){
+    if(answer === true){
         let count = 0
         if(count === 0){
             Array.from(keyBlock).forEach(element => {

@@ -154,10 +154,6 @@ function setWord(rWord) { // DISPLAY WINNING WORD
     }
 }
 
-
-// const MyPromise = require('some-promise-lib');
-// const confetti = require('canvas-confetti');
-// confetti.Promise = MyPromise;
 function gameOver(answer) {
     if(answer === true){
         setWord(ranWord);

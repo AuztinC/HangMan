@@ -18,6 +18,10 @@ async function getNewWord(length){
     something.open("GET", `https://random-word-api.vercel.app/api?words=1&length=${length}`);
     something.onload = function(){
         ranWord = something.responseText.slice(2, something.response.length - 2);
+        console.log(ranWord)
+    }
+    if(ranWord.includes("-")){
+        getNewWord(length)
     }
     something.send();
 }
@@ -61,36 +65,62 @@ function letterCheck(key) { // PRESS ANY KEY
     key.disabled = true;
     for (let i = 0; i < wordLength; i++) {
         if (key.id[3] === ranWord[i].toUpperCase()) {
-            let starBlock = document.createElement('div');
             inputBlock[i].innerHTML = ranWord[i].toUpperCase();
             key.className = key.className.replace(" inactiveKey", " correctKey");
-            key.appendChild(starBlock);
-            starBlock.className = "starBlock";
-            starBlock.innerHTML += " &bigstar;";
             isKey = true;
+            appendStar(key)
+            didWeWin()
         }
     }
-    if (isKey != true){
+    if (isKey !== true){
         f++;
         gameBoard.style.backgroundImage = bodyParts[f]
     }
-    if (f == 9) {
-        gameOver();
-    }
+    let lose = true
+    if (f === 9) {
+        gameOver(lose);
+    } else {lose = false}
     isKey = false;
-    if(didWeWin()){console.log("winner")}
+}
+
+let starBlockCont = document.querySelectorAll(".starBlockCont")
+
+function appendStar(key){
+    let starBlock = document.createElement('div');
+    key.children[0].append(starBlock);
+    starBlockCont.className = "starBlockCont";
+    starBlock.className = "starBlock";
+    starBlock.innerHTML += " &bigstar;";
+    if(key.children[0].children.length > 2){
+        for(let i = 0; i < key.children[0].children.length; i++){
+            key.children[0].children[i].style.fontSize = "6pt";
+        }
+    }
+}
+
+function didWeWin(){
+    let win = false
+    let toWin = wordLength;
+    let inputBlock = document.querySelectorAll(".inputBlock")
+    inputBlock.forEach(element => {
+        if(element.innerHTML){ toWin-- }
+    });
+    if(toWin === 0 && gameBoard.style.backgroundImage !== `url("/img/10.jpg")`){
+        win = true
+        gameOver(win)
+    } else {
+        win = false
+    }
 }
 
 function resetKeys(keyEl){
     const starBlock = document.querySelectorAll('.starBlock');
-    if(keyEl.className.includes(" inactiveKey")){
+    if(keyEl.className.includes(" inactiveKey") || keyEl.className.includes(" correctKey")){
         keyEl.className = "keyBlock"
-        keyEl.disabled = false;
     }
-    if(keyEl.className.includes(" correctKey")){
-        keyEl.className = "keyBlock";
-        keyEl.disabled = false;
-    }
+    Array.from(keyBlock).forEach(el => {
+        el.disabled = false;
+    })
     starBlock.forEach(el => {
         el.remove()
     });
@@ -111,22 +141,6 @@ function resetInputBlock(){
     }
 }
 
-function didWeWin(){
-    let win = false
-    let toWin = wordLength;
-    let inputBlock = document.querySelectorAll(".inputBlock")
-    inputBlock.forEach(element => {
-        if(element.innerHTML){
-            toWin--
-        }
-    });
-    if(toWin === 0 && gameBoard.style.backgroundImage != `url("/img/10.jpg")`){
-        win = true
-    } else {
-        win = false
-    }
-    return win
-}
 
 function anotherWord(){ // RESTART WITH CURRENT WORD LENGTH
     startGame()
@@ -140,12 +154,28 @@ function setWord(rWord) { // DISPLAY WINNING WORD
     }
 }
 
-function gameOver() {
-    setWord(ranWord);
-    for (let j = 0; j < keyBlock.length; j++){
-        Array.from(keyBlock).forEach(element => {
-            letterCheck(keyBlock[j])
-        });
+
+// const MyPromise = require('some-promise-lib');
+// const confetti = require('canvas-confetti');
+// confetti.Promise = MyPromise;
+function gameOver(win, lose) {
+    if(lose === true){
+        setWord(ranWord);
+            Array.from(keyBlock).forEach(element => {
+                if(!element.className.includes("correctKey")) {
+                    letterCheck(element)
+                }
+            })
+    }
+    if(win === true){
+        let count = 0
+        if(count === 0){
+            Array.from(keyBlock).forEach(element => {
+                element.disabled = true
+            })
+            count++
+        }
+
     }
 }
 

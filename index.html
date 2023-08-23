@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Tillana:wght@700&display=swap" rel="stylesheet">
@@ -32,36 +33,36 @@
         <!-- key....board -->
         <div id="keyBoard">
             <div class="keyRow">
-                <button onclick="letterCheck(this)" id="keyQ" class="keyBlock">Q</button>
-                <button onclick="letterCheck(this)" id="keyW" class="keyBlock">W</button>
-                <button onclick="letterCheck(this)" id="keyE" class="keyBlock">E</button>
-                <button onclick="letterCheck(this)" id="keyR" class="keyBlock">R</button>
-                <button onclick="letterCheck(this)" id="keyT" class="keyBlock">T</button>
-                <button onclick="letterCheck(this)" id="keyY" class="keyBlock">Y</button>
-                <button onclick="letterCheck(this)" id="keyU" class="keyBlock">U</button>
-                <button onclick="letterCheck(this)" id="keyI" class="keyBlock">I</button>
-                <button onclick="letterCheck(this)" id="keyO" class="keyBlock">O</button>
+                <button onclick="letterCheck(this)" id="keyQ" class="keyBlock">Q<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyW" class="keyBlock">W<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyE" class="keyBlock">E<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyR" class="keyBlock">R<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyT" class="keyBlock">T<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyY" class="keyBlock">Y<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyU" class="keyBlock">U<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyI" class="keyBlock">I<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyO" class="keyBlock">O<div class="starBlockCont"></div></button>
             </div>
             <div class="keyRow">
-                <button onclick="letterCheck(this)" id="keyA" class="keyBlock">A</button>
-                <button onclick="letterCheck(this)" id="keyS" class="keyBlock">S</button>
-                <button onclick="letterCheck(this)" id="keyD" class="keyBlock">D</button>
-                <button onclick="letterCheck(this)" id="keyF" class="keyBlock">F</button>
-                <button onclick="letterCheck(this)" id="keyG" class="keyBlock">G</button>
-                <button onclick="letterCheck(this)" id="keyH" class="keyBlock">H</button>
-                <button onclick="letterCheck(this)" id="keyJ" class="keyBlock">J</button>
-                <button onclick="letterCheck(this)" id="keyK" class="keyBlock">K</button>
-                <button onclick="letterCheck(this)" id="keyP" class="keyBlock">P</button>
+                <button onclick="letterCheck(this)" id="keyA" class="keyBlock">A<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyS" class="keyBlock">S<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyD" class="keyBlock">D<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyF" class="keyBlock">F<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyG" class="keyBlock">G<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyH" class="keyBlock">H<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyJ" class="keyBlock">J<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyK" class="keyBlock">K<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyP" class="keyBlock">P<div class="starBlockCont"></div></button>
             </div>
             <div class="keyRow3">
-                <button onclick="letterCheck(this)" id="keyZ" class="keyBlock">Z</button>
-                <button onclick="letterCheck(this)" id="keyX" class="keyBlock">X</button>
-                <button onclick="letterCheck(this)" id="keyC" class="keyBlock">C</button>
-                <button onclick="letterCheck(this)" id="keyV" class="keyBlock">V</button>
-                <button onclick="letterCheck(this)" id="keyB" class="keyBlock">B</button>
-                <button onclick="letterCheck(this)" id="keyN" class="keyBlock">N</button>
-                <button onclick="letterCheck(this)" id="keyM" class="keyBlock">M</button>
-                <button onclick="letterCheck(this)" id="keyL" class="keyBlock">L</button>
+                <button onclick="letterCheck(this)" id="keyZ" class="keyBlock">Z<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyX" class="keyBlock">X<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyC" class="keyBlock">C<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyV" class="keyBlock">V<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyB" class="keyBlock">B<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyN" class="keyBlock">N<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyM" class="keyBlock">M<div class="starBlockCont"></div></button>
+                <button onclick="letterCheck(this)" id="keyL" class="keyBlock">L<div class="starBlockCont"></div></button>
             </div>
         </div>
 

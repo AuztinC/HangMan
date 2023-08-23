@@ -118,7 +118,13 @@ body {
     justify-content: center;
     padding-bottom: 30px;
 }
-
+@keyframes paintLetter {
+    from{
+        font-size: 10px;
+    }to{
+        font-size: 50px;
+    }
+}
 #inputWord div {
     font-family: Permanent Marker;
     display: flex;
@@ -129,9 +135,10 @@ body {
     margin-right: 5px;
     width: 32px;
     height: 40px;
-    /* background-color: rgb(39, 198, 79); */
     color: white;
     border-bottom: 4px white solid;
+    animation-name: paintLetter;
+    animation-duration: 1s;
 }
 /* GET TEXTUYRE FOR BGS */
 #keyBoard {
@@ -183,9 +190,7 @@ body {
     box-sizing: border-box;
     flex-grow: 1;
     display: flex;
-    /* height: 40px; */
 }
-
 
 .inactiveKey {
     padding: 2px;
@@ -201,32 +206,37 @@ body {
 }
 
 @keyframes correct {
-    from {
-    }
-    to {
-        bottom: 10px;
-    }
+    0% {}
+    25% {bottom: 10px; rotate: 10deg;}
+    100% {rotate: 0deg;}
 }
 .correctKey {
-    position: relative;
+    background-color: rgb(252, 191, 36);
+    /* position: relative; */
     padding: 2px;
     flex-grow: 1;
     display: flex;
-    border-bottom: 5px solid darkgoldenrod;
+    flex-direction: column;
+    border-bottom: 5px solid rgb(139, 103, 11);
     border-radius: 5px;
     box-sizing: border-box;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
     animation-name: correct;
-    animation-duration: .2s;
+    animation-duration: .3s;
+    font-weight: bolder;
+}
+.starBlockCont{
+    position: absolute;
+    width: 100%;
+    max-height: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
 }
 .starBlock {
-    width: 100%;
-    padding-top:10px;
-    position: absolute;
-    top: 0;
-    left: 0;
+    /* position:absolute; */
     font-size: 8pt;
     color:black;
 }

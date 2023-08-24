@@ -12,6 +12,7 @@ let isKey = false;
 
 
 
+
 // ACCESS RANDOM WORD API
 async function getNewWord(length){
     let something = new XMLHttpRequest();
@@ -76,9 +77,9 @@ function letterCheck(key) { // PRESS ANY KEY
         f++;
         gameBoard.style.backgroundImage = bodyParts[f]
     }
-    let lose = true
     if (f === 9) {
-        gameOver(lose);
+        let win = false
+        gameOver(win);
     } else {lose = false}
     isKey = false;
 }
@@ -154,16 +155,25 @@ function setWord(rWord) { // DISPLAY WINNING WORD
     }
 }
 
-function gameOver(answer) {
-    if(answer === true){
+
+//          Create timer for correct keys to bounce
+//          Input blocks bounce through letters with timer
+
+
+
+function gameOver(answer) { // DID WE WIN OR LOSE
+    let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
+    console.log(answer)
+    if(answer === false){ // LOSE
         setWord(ranWord);
-            Array.from(keyBlock).forEach(element => {
-                if(!element.className.includes("correctKey")) {
-                    letterCheck(element)
-                }
-            })
+        Array.from(keyBlock).forEach(element => {
+            if(!element.className.includes("correctKey")) {
+                letterCheck(element)
+            }
+        })
     }
-    if(answer === true){
+    if(answer === true){ // WIN
+        let keyBounce = setInterval(frame, 5)
         let count = 0
         if(count === 0){
             Array.from(keyBlock).forEach(element => {
@@ -171,7 +181,10 @@ function gameOver(answer) {
             })
             count++
         }
-
+        gameBoard.style.backgroundImage = `url("./img/0.jpg")`;
+        function frame(){
+            // if()
+        }
     }
 }
 

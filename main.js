@@ -163,7 +163,6 @@ function setWord(rWord) { // DISPLAY WINNING WORD
 
 function gameOver(answer) { // DID WE WIN OR LOSE
     let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
-    console.log(answer)
     if(answer === false){ // LOSE
         setWord(ranWord);
         Array.from(keyBlock).forEach(element => {
@@ -173,20 +172,32 @@ function gameOver(answer) { // DID WE WIN OR LOSE
         })
     }
     if(answer === true){ // WIN
-        let keyBounce = setInterval(frame, 5)
+        let endAnimation = [`url("/img/end-1.jpg")`,`url("/img/end-2.jpg")`,`url("/img/end-3.jpg")`,`url("/img/end-4.jpg")`];
         let count = 0
         if(count === 0){
-            Array.from(keyBlock).forEach(element => {
-                element.disabled = true
-            })
-            count++
+            let tempPos = 0;
+            inputBlock[tempPos].className += " jumpLetter"
+            gameBoard.style.backgroundImage !== `url("/img/10.jpg")`
+            let keyBounce = setInterval(() => {
+                for(let i = 0; i < inputBlock.length; i++){
+                    if(inputBlock[i].className.includes("jumpLetter")){
+                        inputBlock[i].className = inputBlock[i].className.replace(" jumpLetter", "")
+                        console.log(inputBlock[i].className)
+                        tempPos = i + 1
+                        if(tempPos === inputBlock.length){
+                            tempPos = 0;
+                        }
+                    }
+                }
+                inputBlock[tempPos].className += " jumpLetter"
+                tempPos++
+            }, 500)
+                Array.from(keyBlock).forEach(element => {
+                    element.disabled = true
+                })
+                count++
         }
         gameBoard.style.backgroundImage = `url("./img/0.jpg")`;
-        function frame(){
-            // if()
-        }
     }
 }
-
-
 

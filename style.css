@@ -47,7 +47,7 @@ body {
 .reset {
     position: absolute;
     left: 1%;
-    top: 20%;
+    bottom: 80%;
 }
 .fourLetters{
     position: absolute;
@@ -93,11 +93,8 @@ body {
 #gameBoard {
     margin-bottom: 5px;
     margin-top: 5px;
-    /* margin: 0px; */
     width: 200px;
     min-height: 350px;
-    /* background-image: url("./img/0.jpg"); */
-    /* background-size:contain; */
     background-repeat: no-repeat;
     background-position: center;
     box-sizing: border-box;
@@ -118,14 +115,17 @@ body {
     justify-content: center;
     padding-bottom: 30px;
 }
-@keyframes paintLetter {
-    from{
-        font-size: 10px;
-    }to{
-        font-size: 50px;
-    }
+@keyframes jumpLetter {
+    0% {}
+    25% {bottom: 10px; rotate: 10deg;}
+    100% {rotate: 0deg; font-size: 50px;}
+}
+.jumpLetter{
+    animation-name: jumpLetter;
+    animation-duration: 1s;
 }
 #inputWord div {
+    position: relative;
     font-family: Permanent Marker;
     display: flex;
     justify-content: center;
@@ -137,9 +137,8 @@ body {
     height: 40px;
     color: white;
     border-bottom: 4px white solid;
-    animation-name: paintLetter;
-    animation-duration: 1s;
 }
+
 /* GET TEXTUYRE FOR BGS */
 #keyBoard {
     border: solid;
@@ -240,8 +239,50 @@ body {
     font-size: 8pt;
     color:black;
 }
-
-@media screen and (max-width: 480px) {
+@media screen and (max-height: 450px){
+    #gameBoard{
+        position: relative;
+        min-height: 270px;
+        bottom: 7%;
+        left: 30%;
+    }
+    #keyBoard{
+        position: relative;
+        bottom: 70%;
+        right: 25%;
+        width: 50%;
+    }
+    #inputWord{
+        position: relative;
+        bottom: 60%;
+        right: 15%;
+    }
+    .keyBlock{
+        margin: 1px;
+        margin-bottom: 4px;
+        padding: 1px;
+    }
+    .reset{
+        left: 2%;
+        bottom: 65%;
+    }
+    .sixLetters{
+        /* top: 25%; */
+        bottom: 65%;
+        left: 20%
+    }
+    .fiveLetters{
+        /* top: 25%; */
+        bottom: 65%;
+        left: 35%
+    }
+    .fourLetters{
+        /* top: 25%; */
+        bottom: 65%;
+        left: 50%
+    }
+  }
+@media screen and (max-width: 600px) {
     body{
         display: block;
         height: 100vh;

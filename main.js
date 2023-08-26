@@ -39,7 +39,7 @@ function startGame(){ //        START THIS MFER UP
 
     // CHECK || clear input blocks
     resetInputBlock();
-
+    endAnimation(false)
     getNewWord(wordLength)
 }
 
@@ -78,8 +78,8 @@ function letterCheck(key) { // PRESS ANY KEY
         gameBoard.style.backgroundImage = bodyParts[f]
     }
     if (f === 9) {
-        let win = false
-        gameOver(win);
+        // let win = false
+        gameOver(false);
     } else {lose = false}
     isKey = false;
 }
@@ -107,8 +107,8 @@ function didWeWin(){
         if(element.innerHTML){ toWin-- }
     });
     if(toWin === 0 && gameBoard.style.backgroundImage !== `url("/img/10.jpg")`){
-        win = true
-        gameOver(win)
+        // win = true
+        gameOver(true)
     } else {
         win = false
     }
@@ -148,7 +148,7 @@ function anotherWord(){ // RESTART WITH CURRENT WORD LENGTH
 }
 
 function setWord(rWord) { // DISPLAY WINNING WORD
-    let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
+    const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
     for (let i = 0; i < inputBlock.length; i++) {
         inputBlock[i].innerHTML = rWord[i].toUpperCase();
         inputBlock[i].style.visibility='visible'
@@ -162,7 +162,7 @@ function setWord(rWord) { // DISPLAY WINNING WORD
 
 
 function gameOver(answer) { // DID WE WIN OR LOSE
-    let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
+    const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
     if(answer === false){ // LOSE
         setWord(ranWord);
         Array.from(keyBlock).forEach(element => {
@@ -172,32 +172,49 @@ function gameOver(answer) { // DID WE WIN OR LOSE
         })
     }
     if(answer === true){ // WIN
-        let endAnimation = [`url("/img/end-1.jpg")`,`url("/img/end-2.jpg")`,`url("/img/end-3.jpg")`,`url("/img/end-4.jpg")`];
+        endAnimation(true)
         let count = 0
         if(count === 0){
-            let tempPos = 0;
-            inputBlock[tempPos].className += " jumpLetter"
-            gameBoard.style.backgroundImage !== `url("/img/10.jpg")`
-            let keyBounce = setInterval(() => {
-                for(let i = 0; i < inputBlock.length; i++){
-                    if(inputBlock[i].className.includes("jumpLetter")){
-                        inputBlock[i].className = inputBlock[i].className.replace(" jumpLetter", "")
-                        console.log(inputBlock[i].className)
-                        tempPos = i + 1
-                        if(tempPos === inputBlock.length){
-                            tempPos = 0;
-                        }
+            // gameBoard.style.backgroundImage = endAnimation[0];
+            Array.from(keyBlock).forEach(element => {
+                element.disabled = true
+            })
+            count++
+        }
+    }
+}
+
+
+function endAnimation(go){
+    const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
+    let endFrame = [`url("/img/end-1.png")`,`url("/img/end-2.png")`,`url("/img/end-3.png")`,`url("/img/end-4.png")`];
+    let frame = 0;
+    let tempPos = 0;
+    if(go === true){
+    inputBlock[tempPos].className += " jumpLetter"
+    let keyBounce = setInterval(() => {
+            for(let i = 0; i < inputBlock.length; i++){
+                if(inputBlock[i].className.includes("jumpLetter")){
+                    inputBlock[i].className = inputBlock[i].className.replace(" jumpLetter", "")
+                    // console.log(inputBlock[i].className)
+                    tempPos = i + 1
+                    if(tempPos === inputBlock.length){
+                        tempPos = 0;
                     }
                 }
-                inputBlock[tempPos].className += " jumpLetter"
-                tempPos++
-            }, 500)
-                Array.from(keyBlock).forEach(element => {
-                    element.disabled = true
-                })
-                count++
-        }
-        gameBoard.style.backgroundImage = `url("./img/0.jpg")`;
+            }
+            if(frame === endFrame.length){
+                frame = 0;
+            }
+            gameBoard.style.backgroundImage = endFrame[frame]
+            inputBlock[tempPos].className += " jumpLetter"
+            frame++
+            tempPos++
+            console.log(gameBoard.style.backgroundImage)
+        }, 500)
     }
+
+        // clearInterval(keyBounce)
+
 }
 

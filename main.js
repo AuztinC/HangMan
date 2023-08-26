@@ -10,7 +10,7 @@ const uiBtns = document.getElementsByClassName("btn")
 const inputWord = document.getElementById("inputWord");
 let isKey = false;
 
-
+let myInterval;// = setTimeout(endAnimation, 10)
 
 
 // ACCESS RANDOM WORD API
@@ -33,13 +33,14 @@ function startGame(){ //        START THIS MFER UP
     Array.from(keyBlock).forEach(keyEl => { // reset keys
         resetKeys(keyEl)
     });
-
+    
     // CHECK || reset images
     resetImg()
-
+    clearInterval(myInterval)
+    
     // CHECK || clear input blocks
     resetInputBlock();
-    endAnimation(false)
+    // endAnimation(false)
     getNewWord(wordLength)
 }
 
@@ -126,10 +127,12 @@ function resetKeys(keyEl){
         el.remove()
     });
 }
+
 function resetImg(){
     f = 0;
     gameBoard.style.backgroundImage = `url("./img/0.jpg")`;
 }
+
 function resetInputBlock(){
     let currentInpBlx = document.querySelectorAll(".inputBlock")
     currentInpBlx.forEach(element => {
@@ -142,11 +145,6 @@ function resetInputBlock(){
     }
 }
 
-
-function anotherWord(){ // RESTART WITH CURRENT WORD LENGTH
-    startGame()
-}
-
 function setWord(rWord) { // DISPLAY WINNING WORD
     const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
     for (let i = 0; i < inputBlock.length; i++) {
@@ -154,12 +152,6 @@ function setWord(rWord) { // DISPLAY WINNING WORD
         inputBlock[i].style.visibility='visible'
     }
 }
-
-
-//          Create timer for correct keys to bounce
-//          Input blocks bounce through letters with timer
-
-
 
 function gameOver(answer) { // DID WE WIN OR LOSE
     const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
@@ -172,10 +164,9 @@ function gameOver(answer) { // DID WE WIN OR LOSE
         })
     }
     if(answer === true){ // WIN
-        endAnimation(true)
+        endAnimation()
         let count = 0
         if(count === 0){
-            // gameBoard.style.backgroundImage = endAnimation[0];
             Array.from(keyBlock).forEach(element => {
                 element.disabled = true
             })
@@ -184,19 +175,16 @@ function gameOver(answer) { // DID WE WIN OR LOSE
     }
 }
 
-
-function endAnimation(go){
+function endAnimation(){ // WATCH ME DANCE
     const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
     let endFrame = [`url("/img/end-1.png")`,`url("/img/end-2.png")`,`url("/img/end-3.png")`,`url("/img/end-4.png")`];
     let frame = 0;
     let tempPos = 0;
-    if(go === true){
-    inputBlock[tempPos].className += " jumpLetter"
+
     let keyBounce = setInterval(() => {
             for(let i = 0; i < inputBlock.length; i++){
                 if(inputBlock[i].className.includes("jumpLetter")){
                     inputBlock[i].className = inputBlock[i].className.replace(" jumpLetter", "")
-                    // console.log(inputBlock[i].className)
                     tempPos = i + 1
                     if(tempPos === inputBlock.length){
                         tempPos = 0;
@@ -210,11 +198,7 @@ function endAnimation(go){
             inputBlock[tempPos].className += " jumpLetter"
             frame++
             tempPos++
-            console.log(gameBoard.style.backgroundImage)
         }, 500)
-    }
-
-        // clearInterval(keyBounce)
-
+    myInterval = keyBounce;
 }
 

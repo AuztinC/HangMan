@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="style.css">
     <title>Hangman</title>
 
@@ -17,11 +17,11 @@
 
     <div id="container">
         <h1 id="title">Hangman</h1>
-        <!-- <button class="btn fullScreen" onclick="document.getElementById('container').requestFullscreen();">FULLSCREEN</button> -->
+        <button class="btn fullScreen" onclick="document.getElementById('container').requestFullscreen();">FULLSCREEN</button>
 
         <div id="gameBoard"></div>
 
-        <button class="btn reset" onclick="anotherWord()">Another<br>Word?</button>
+        <button class="btn reset" onclick="startGame()">Another<br>Word?</button>
         <button class="btn fourLetters selected" onclick="setWordLength(this, 4)">Four<br>Letters</button>
         <button class="btn fiveLetters" onclick="setWordLength(this, 5)">Five<br>Letters</button>
         <button class="btn sixLetters" onclick="setWordLength(this, 6)">Six<br>Letters</button>

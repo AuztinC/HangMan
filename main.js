@@ -8,10 +8,11 @@ const gameBoard = document.getElementById('gameBoard');
 const keyBlock = document.getElementsByClassName('keyBlock');
 const uiBtns = document.getElementsByClassName("btn")
 const inputWord = document.getElementById("inputWord");
+const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
+const starBlockCont = document.querySelectorAll(".starBlockCont")
 let isKey = false;
 
-let myInterval;// = setTimeout(endAnimation, 10)
-
+let myInterval = null;
 
 // ACCESS RANDOM WORD API
 async function getNewWord(length){
@@ -40,7 +41,7 @@ function startGame(){ //        START THIS MFER UP
     
     // CHECK || clear input blocks
     resetInputBlock();
-    // endAnimation(false)
+    
     getNewWord(wordLength)
 }
 
@@ -61,7 +62,7 @@ function setWordLength(obj, num){  // CHANGE GAME ACCORDING TO WORD LENGTH
 }
 
 function letterCheck(key) { // PRESS ANY KEY
-    let inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
+    const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
 
     key.className += " inactiveKey";
     key.disabled = true;
@@ -79,13 +80,12 @@ function letterCheck(key) { // PRESS ANY KEY
         gameBoard.style.backgroundImage = bodyParts[f]
     }
     if (f === 9) {
-        // let win = false
         gameOver(false);
     } else {lose = false}
     isKey = false;
 }
 
-let starBlockCont = document.querySelectorAll(".starBlockCont")
+
 
 function appendStar(key){
     let starBlock = document.createElement('div');
@@ -146,7 +146,6 @@ function resetInputBlock(){
 }
 
 function setWord(rWord) { // DISPLAY WINNING WORD
-    const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
     for (let i = 0; i < inputBlock.length; i++) {
         inputBlock[i].innerHTML = rWord[i].toUpperCase();
         inputBlock[i].style.visibility='visible'
@@ -154,7 +153,6 @@ function setWord(rWord) { // DISPLAY WINNING WORD
 }
 
 function gameOver(answer) { // DID WE WIN OR LOSE
-    const inputBlock = Array.from(document.querySelectorAll('.inputBlock'));
     if(answer === false){ // LOSE
         setWord(ranWord);
         Array.from(keyBlock).forEach(element => {

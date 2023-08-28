@@ -23,7 +23,6 @@ const loseSound = new Audio('/audio/lose-sound.wav');
 // backgroundMusic.volume = 0.2;
 // backgroundMusic.autoplay = true;
 
-
 // ACCESS RANDOM WORD API
 async function getNewWord(length){
     let something = new XMLHttpRequest();
@@ -87,7 +86,7 @@ function letterCheck(key) { // PRESS ANY KEY
     }
     if (isKey !== true){
         incorrectSound.play()
-        incorrectSound.volume = .2;
+        incorrectSound.volume = .5;
         f++;
         gameBoard.style.backgroundImage = bodyParts[f]
     }

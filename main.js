@@ -18,10 +18,10 @@ let myInterval = null;
 const incorrectSound = new Audio('/audio/incorrect-sound.wav');
 const winSound = new Audio('/audio/win-sound.wav');
 const loseSound = new Audio('/audio/lose-sound.wav');
-const backgroundMusic = new Audio('/audio/jazz-music.mp3');
-backgroundMusic.loop = true;
-backgroundMusic.volume = 0.2;
-backgroundMusic.autoplay = true;
+// const backgroundMusic = new Audio('/audio/jazz-music.mp3');
+// backgroundMusic.loop = true;
+// backgroundMusic.volume = 0.2;
+// backgroundMusic.autoplay = true;
 
 
 // ACCESS RANDOM WORD API

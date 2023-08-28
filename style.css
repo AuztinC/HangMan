@@ -64,6 +64,9 @@ body {
 .selected{
     background-color: rgb(104, 52, 15);
 }
+.fullScreen {
+    display: none;
+}
 
 #title {
     width: 100%;
@@ -253,6 +256,9 @@ body {
         margin-bottom: 4px;
         padding: 1px;
     }
+    .fullScreen{
+        display: none;
+    }
     .reset{
         left: 2%;
         bottom: 65%;
@@ -297,6 +303,9 @@ body {
     }
     .btn{
         letter-spacing: 0px;
+    }
+    .fullScreen {
+        display: block;
     }
     #keyBoard {
         border: solid;

@@ -21,7 +21,8 @@ const loseSound = new Audio('/audio/lose-sound.wav');
 const backgroundMusic = new Audio('/audio/jazz-music.mp3');
 backgroundMusic.loop = true;
 backgroundMusic.volume = 0.2;
-backgroundMusic.play();
+backgroundMusic.autoplay = true;
+
 
 // ACCESS RANDOM WORD API
 async function getNewWord(length){

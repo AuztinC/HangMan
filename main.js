@@ -14,6 +14,15 @@ let isKey = false;
 
 let myInterval = null;
 
+
+const incorrectSound = new Audio('/audio/incorrect-sound.wav');
+const winSound = new Audio('/audio/win-sound.wav');
+const loseSound = new Audio('/audio/lose-sound.wav');
+const backgroundMusic = new Audio('/audio/jazz-music.mp3');
+backgroundMusic.loop = true;
+backgroundMusic.volume = 0.2;
+backgroundMusic.play();
+
 // ACCESS RANDOM WORD API
 async function getNewWord(length){
     let something = new XMLHttpRequest();
@@ -34,14 +43,11 @@ function startGame(){ //        START THIS MFER UP
     Array.from(keyBlock).forEach(keyEl => { // reset keys
         resetKeys(keyEl)
     });
-    
+    clearInterval(myInterval)
     // CHECK || reset images
     resetImg()
-    clearInterval(myInterval)
-    
     // CHECK || clear input blocks
     resetInputBlock();
-    
     getNewWord(wordLength)
 }
 
@@ -68,6 +74,9 @@ function letterCheck(key) { // PRESS ANY KEY
     key.disabled = true;
     for (let i = 0; i < wordLength; i++) {
         if (key.id[3] === ranWord[i].toUpperCase()) {
+            const correctSound = new Audio('/audio/correct-sound.wav');
+            correctSound.play()
+            correctSound.volume = .2;
             inputBlock[i].innerHTML = ranWord[i].toUpperCase();
             key.className = key.className.replace(" inactiveKey", " correctKey");
             isKey = true;
@@ -76,6 +85,8 @@ function letterCheck(key) { // PRESS ANY KEY
         }
     }
     if (isKey !== true){
+        incorrectSound.play()
+        incorrectSound.volume = .2;
         f++;
         gameBoard.style.backgroundImage = bodyParts[f]
     }
@@ -101,14 +112,12 @@ function appendStar(key){
 }
 
 function didWeWin(){
-    let win = false
     let toWin = wordLength;
     let inputBlock = document.querySelectorAll(".inputBlock")
     inputBlock.forEach(element => {
         if(element.innerHTML){ toWin-- }
     });
     if(toWin === 0 && gameBoard.style.backgroundImage !== `url("/img/10.jpg")`){
-        // win = true
         gameOver(true)
     } else {
         win = false
@@ -155,6 +164,7 @@ function setWord(rWord) { // DISPLAY WINNING WORD
 function gameOver(answer) { // DID WE WIN OR LOSE
     if(answer === false){ // LOSE
         setWord(ranWord);
+        loseSound.play()
         Array.from(keyBlock).forEach(element => {
             if(!element.className.includes("correctKey")) {
                 letterCheck(element)
@@ -163,6 +173,7 @@ function gameOver(answer) { // DID WE WIN OR LOSE
     }
     if(answer === true){ // WIN
         endAnimation()
+        winSound.play()
         let count = 0
         if(count === 0){
             Array.from(keyBlock).forEach(element => {

@@ -97,6 +97,17 @@ function letterCheck(key) { // PRESS ANY KEY
 }
 
 
+const elem = document.getElementById('container')
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+    }
+    }
+
 
 function appendStar(key){
     let starBlock = document.createElement('div');
